@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Locker",
+  "description": "Lock the tab which makes you lost",
+  "version": "1.0",
+  "action": {
+    "default_popup": "./popup/index.html",
+    "default_icon": "./resources/stopwatch_64.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "./script/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "exclude_matches": [
+        "*://*.chrome/*",
+        "*://*.edge/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "options_page": "./options/index.html",
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "timeout.html",
+        "timeout2.html",
+        "settings.htlm"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  }
+}
