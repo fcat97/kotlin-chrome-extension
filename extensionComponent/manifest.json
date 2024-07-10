@@ -12,7 +12,7 @@
     "storage"
   ],
   "background": {
-    "service_worker": "./script/background.js",
+    "service_worker": "./scripts/background.js",
     "type": "module"
   },
   "content_scripts": [
@@ -25,7 +25,7 @@
         "*://*.edge/*"
       ],
       "js": [
-        "content.js"
+        "./scripts/content.js"
       ]
     }
   ],
