@@ -7,7 +7,7 @@ plugins {
 }
 
 tasks.register("preparePopup") {
-    group = "extension"
+    group = "browser extension"
     dependsOn(":extensionComponent:popup:clean")
     dependsOn(":extensionComponent:popup:wasmJsBrowserDistribution")
         .mustRunAfter(":extensionComponent:popup:clean")
@@ -30,8 +30,13 @@ tasks.register("preparePopup") {
     }
 }
 
+tasks.register("debugPopup") {
+    group = "browser extension"
+    dependsOn(":extensionComponent:popup:wasmJsBrowserDevelopmentRun")
+}
+
 tasks.register("prepareOptions") {
-    group = "extension"
+    group = "browser extension"
     dependsOn(":extensionComponent:options:clean")
     dependsOn(":extensionComponent:options:wasmJsBrowserDistribution")
         .mustRunAfter(":extensionComponent:options:clean")
@@ -44,8 +49,13 @@ tasks.register("prepareOptions") {
     }
 }
 
+tasks.register("debugOptions") {
+    group = "browser extension"
+    dependsOn(":extensionComponent:options:wasmJsBrowserDevelopmentRun")
+}
+
 tasks.register("copyDependencies") {
-    group = "extension"
+    group = "browser extension"
 
     doLast {
         copy {
@@ -71,7 +81,7 @@ tasks.register("copyDependencies") {
 }
 
 tasks.register("bundleExtension") {
-    group = "extension"
+    group = "browser extension"
     doFirst {
         delete("distribution/*")
     }

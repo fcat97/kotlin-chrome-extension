@@ -1,18 +1,27 @@
-This is a Kotlin Multiplatform project targeting Web.
+This is a sample template for creating Chrome browser extension with Kotlin and Jetpack compose
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
+#### Project Structure:
+All the components are inside `./extensionComponent` directory.
 
+- __`./background:`__ this directory consist of background services.
+- __`./content:`__ this directory consist of content scripts which are injected into webpages.
+- __`./option:`__ this directory holds the webpage for configuring the extension. The extensions home page.
+- __`./popup:`__ this directory holds the webpage for extension popup. This page is shown when user clicks on the extension icon in toolbar.
+- __`./resources:`__ directory for static assets like icon etc.
+- __`./shared:`__ kotlin library module for common functionalities. This is not a part of the extension rather it's a regular gradle module.
+
+#### Build and Distribute
+
+##### Debugging
+For popup run `./gradlew debugPopup`
+For options run `./gradlew debugOptions`
+
+##### Distribution
+to distribute run `./gradlew bundleExtension`. The prepared output will be inside `./distribution` directory.
+
+--- 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
 [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
 [Kotlin/Wasm](https://kotl.in/wasm/)…
 
-We would appreciate your feedback on Compose/Web and Kotlin/Wasm in the public Slack channel [#compose-web](https://slack-chats.kotlinlang.org/c/compose-web).
-If you face any issues, please report them on [GitHub](https://github.com/JetBrains/compose-multiplatform/issues).
-
-You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task.
