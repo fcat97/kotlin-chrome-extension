@@ -32,3 +32,4 @@ dependencyResolutionManagement {
 include(":extensionComponent:options")
 include(":extensionComponent:popup")
 include(":extensionComponent:shared")
+include(":extensionComponent:background")
