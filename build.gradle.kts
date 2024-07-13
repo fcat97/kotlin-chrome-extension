@@ -9,12 +9,12 @@ plugins {
 tasks.register("preparePopup") {
     group = "browser extension"
     dependsOn(":extensionComponent:popup:clean")
-    dependsOn(":extensionComponent:popup:wasmJsBrowserDistribution")
+    dependsOn(":extensionComponent:popup:jsBrowserDistribution")
         .mustRunAfter(":extensionComponent:popup:clean")
 
     doLast {
         copy {
-            from("extensionComponent/popup/build/dist/wasmJs/productionExecutable")
+            from("extensionComponent/popup/build/dist/js/productionExecutable")
             into("distribution/popup/")
         }
 
@@ -24,7 +24,7 @@ tasks.register("preparePopup") {
          * Setting Modifier.height() to root composable doesn't work.
          */
         copy {
-            from("extensionComponent/popup/src/wasmJsMain/resources/styles.css")
+            from("extensionComponent/popup/src/jsMain/resources/styles.css")
             into("distribution/popup/")
         }
     }
@@ -32,18 +32,18 @@ tasks.register("preparePopup") {
 
 tasks.register("debugPopup") {
     group = "browser extension"
-    dependsOn(":extensionComponent:popup:wasmJsBrowserDevelopmentRun")
+    dependsOn(":extensionComponent:popup:jsBrowserDevelopmentRun")
 }
 
 tasks.register("prepareOptions") {
     group = "browser extension"
     dependsOn(":extensionComponent:options:clean")
-    dependsOn(":extensionComponent:options:wasmJsBrowserDistribution")
+    dependsOn(":extensionComponent:options:jsBrowserDistribution")
         .mustRunAfter(":extensionComponent:options:clean")
 
     doLast {
         copy {
-            from("extensionComponent/options/build/dist/wasmJs/productionExecutable")
+            from("extensionComponent/options/build/dist/js/productionExecutable")
             into("distribution/options/")
         }
     }
@@ -51,8 +51,28 @@ tasks.register("prepareOptions") {
 
 tasks.register("debugOptions") {
     group = "browser extension"
-    dependsOn(":extensionComponent:options:wasmJsBrowserDevelopmentRun")
+    dependsOn(":extensionComponent:options:jsBrowserDevelopmentRun")
 }
+
+tasks.register("prepareBackground") {
+    group = "browser extension"
+    dependsOn(":extensionComponent:background:clean")
+    dependsOn(":extensionComponent:background:jsBrowserDistribution")
+        .mustRunAfter(":extensionComponent:background:clean")
+
+    doLast {
+        copy {
+            from("extensionComponent/background/build/dist/js/productionExecutable")
+            into("distribution/background/")
+        }
+    }
+}
+
+tasks.register("debugBackground") {
+    group = "browser extension"
+    dependsOn(":extensionComponent:background:jsBrowserDevelopmentRun")
+}
+
 
 tasks.register("copyDependencies") {
     group = "browser extension"
@@ -61,11 +81,6 @@ tasks.register("copyDependencies") {
         copy {
             from("extensionComponent/manifest.json")
             into("distribution/")
-        }
-
-        copy {
-            from("extensionComponent/background/background.js")
-            into("distribution/scripts/")
         }
 
         copy {

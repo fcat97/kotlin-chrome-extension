@@ -9,8 +9,7 @@ plugins {
 }
 
 kotlin {
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
+    js {
         moduleName = "popup"
         browser {
             commonWebpackConfig {
@@ -36,9 +35,7 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.kotlinx.datetime)
-            implementation("org.jetbrains.compose.material:material-icons-extended:1.6.11")
-        }
-        wasmJsMain.dependencies {
+            implementation(libs.material.icon.ext)
             implementation(project(":extensionComponent:shared"))
         }
     }

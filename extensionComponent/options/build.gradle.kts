@@ -9,8 +9,7 @@ plugins {
 }
 
 kotlin {
-    @OptIn(ExperimentalWasmDsl::class)
-    wasmJs {
+    js {
         moduleName = "options"
         browser {
             commonWebpackConfig {

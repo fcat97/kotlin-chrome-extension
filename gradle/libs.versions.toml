@@ -6,6 +6,7 @@ kamel = "0.9.5-wasm"
 kotlin-datetime = "0.6.0"
 kotlin-coroutine = "1.8.1"
 kotlin-json = "1.6.3"
+material-icon = "1.6.11"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -15,6 +16,7 @@ kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamel" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlin-json" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlin-datetime" }
 kotlinx-coroutine = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutine" }
+material-icon-ext = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "material-icon" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
