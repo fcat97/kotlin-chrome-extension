@@ -54,6 +54,25 @@ tasks.register("debugOptions") {
     dependsOn(":extensionComponent:options:wasmJsBrowserDevelopmentRun")
 }
 
+tasks.register("prepareBackground") {
+    group = "browser extension"
+    dependsOn(":extensionComponent:background:clean")
+    dependsOn(":extensionComponent:background:wasmJsBrowserDistribution")
+        .mustRunAfter(":extensionComponent:background:clean")
+
+    doLast {
+        copy {
+            from("extensionComponent/background/build/dist/wasmJs/productionExecutable")
+            into("distribution/background/")
+        }
+    }
+}
+
+tasks.register("debugBackground") {
+    group = "browser extension"
+    dependsOn(":extensionComponent:background:wasmJsBrowserDevelopmentRun")
+}
+
 tasks.register("copyDependencies") {
     group = "browser extension"
 
